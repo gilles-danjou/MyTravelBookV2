@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.brand-text {
+    font-size: 14px;
+}
+
+#searchInput {
+    border-color: #54abd9;
+    border-width: 0px 0px 3px 0px;
+}
+
+.searchbox {
+    width: 400px;
+}
+
+.no-padding-top {
+    padding-top: 0px;
+}
+
+.page-header {
+    font-weight: 200;
+}

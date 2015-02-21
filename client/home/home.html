@@ -1,0 +1,13 @@
+<div class="jumbotron text-center">
+	<h1>Planning a trip these holidays ?...</h1>
+
+	<div ng-if="!main.loggedIn">
+		<p>Login to see manage access your Travel NoteBook</p>
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+
+	<div ng-if="main.loggedIn">
+		<p>It’s never been this easy...</p>
+		<a href="/users" class="btn btn-primary">View Users</a>
+	</div>
+</div>
