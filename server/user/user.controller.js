@@ -59,6 +59,7 @@ exports.destroy = function(req, res) {
 
 
 exports.me = function(req, res) {
+    console.log('name ' + req.decoded.name)
     User.findOne({ name: req.decoded.name}, function(err, user) {
         if (err) res.send(err);
         res.json(user);	                                                                        			// return the users

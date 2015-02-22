@@ -6,36 +6,38 @@
 <div class="row" ng-controller="searchController as search">
     <searches ng-repeat="oneSearch in search.allSearches">
         <h1>{{oneSearch.query}}</h1>
-        <hr>
-        <articles ng-repeat="oneArticle in oneSearch.articles">
-            <div class="col-lg-5">
-                <article class="panel">
-                    {{oneArticle.info.query}}
-                    <div class="panel-bg-cover">
-                        <img class="img-responsive" src="{{oneArticle.info.image}}" alt="Image">
-                    </div>
-                    <div class="panel-media">
-                        <img src="{{oneArticle.info.bubble}}" class="panel-media-img img-circle img-border-light" alt="Profile Picture">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <h3 class="panel-media-heading">{{oneArticle.info.imageTitle}}</h3>
-                                <a href="{{oneArticle.link1.uri}}" class="btn-link">{{oneArticle.info.link1.label}}</a>
-                                <p class="text-muted mar-btm">{{oneArticle.info.comment}}</p>
-                            </div>
-                            <div class="col-lg-5 text-lg-right">
-                                <a ng-click="search.deleteArticle(oneArticle._id)">
-                                    <button class="btn btn-danger btn-labeled fa fa-remove">Delete</button>
-                                </a>
-                                <button class="btn btn-sm btn-mint btn-icon fa fa-envelope icon-lg"></button>
+        <div class="row">
+
+            <articles ng-repeat="oneArticle in oneSearch.articles">
+                <div class="col-lg-5">
+                    <article class="panel">
+                        {{oneArticle.info.query}}
+                        <div class="panel-bg-cover">
+                            <img class="img-responsive" src="{{oneArticle.info.image}}" alt="Image">
+                        </div>
+                        <div class="panel-media">
+                            <img src="{{oneArticle.info.bubble}}" class="panel-media-img img-circle img-border-light" alt="Profile Picture">
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <h3 class="panel-media-heading">{{oneArticle.info.imageTitle}}</h3>
+                                    <a href="{{oneArticle.link1.uri}}" class="btn-link">{{oneArticle.info.link1.label}}</a>
+                                    <p class="text-muted mar-btm">{{oneArticle.info.comment}}</p>
+                                </div>
+                                <div class="col-lg-5 text-lg-right">
+                                    <a ng-click="search.deleteArticle(oneArticle._id)">
+                                        <button class="btn btn-danger btn-labeled fa fa-remove">Delete</button>
+                                    </a>
+                                    <button class="btn btn-sm btn-mint btn-icon fa fa-envelope icon-lg"></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-body no-padding-top">
-                        <h4>{{oneArticle.info.title}}</h4>
-                        {{oneArticle.info.summary}}
-                    </div>
-                </article>
-            </div>
-        </articles>
+                        <div class="panel-body no-padding-top">
+                            <h4>{{oneArticle.info.title}}</h4>
+                            {{oneArticle.info.summary}}
+                        </div>
+                    </article>
+                </div>
+            </articles>
+        </div>
     </searches>
 </div>

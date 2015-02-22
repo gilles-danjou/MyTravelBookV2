@@ -1,13 +1,15 @@
-angular.module('appCtrl', [])
+angular.module('appCtrl', ['authService'])
 
-	.controller('appController',  function($rootScope, $location, Auth, growl, socket) {
+	.controller('appController', ['$rootScope', '$location', 'Auth', 'growl', 'socket', function($rootScope, $location, Auth, growl, socket) {
 
 		var vm = this;
 		vm.loggedIn = Auth.isLoggedIn();                                                                                	// get info if a person is logged in
 
 		$rootScope.$on('$routeChangeStart', function() {                                                                    // check to see if a user is logged in on every request
 			vm.loggedIn = Auth.isLoggedIn();
-			Auth.getUser().then(function(data) { vm.user = data.data; });                                                   // get user information on page load
+            //Auth.getUser().then(function(data) {
+				// if (data) vm.me = data.me;
+            //});                                                   // get user information on page load
 		});
 
 		vm.doLogin = function() {                                                                                           // function to handle login form
@@ -15,14 +17,15 @@ angular.module('appCtrl', [])
 			vm.error = '';
             Auth.login(vm.loginData.username, vm.loginData.password).success(function(data) {
 				vm.processing = false;
-				if (data.success) $location.path('/users');	                                                			// if a user successfully logs in, redirect to users page
+                vm.user = data.user;
+                if (data.success) $location.path('/users');	                                                			// if a user successfully logs in, redirect to users page
 				else vm.error = data.message
 			})
 		};
 
 		vm.doLogout = function() { Auth.logout(); $location.path('/login'); };                                              // function to handle logging out
 
-		vm.notify = function (options) {
+        $rootScope.notify = function (options) {
 			if (options.message) {
 				var config = {};
 				switch (options.type) {
@@ -51,4 +54,4 @@ angular.module('appCtrl', [])
             vm.notify(data);
         });
 
-	});
+	}]);

@@ -37,8 +37,8 @@ app.use(morgan('dev'));                                                         
 mongoose.connect(config.database);
 app.use(express.static(__dirname + '/client'));                                                                         // set static files location used for requests that our frontend will make
 
-//var apiRoutes = require('./routes')(app, express);
-//app.use('/api', apiRoutes);
+var apiRoutes = require('./routes')(app, express);
+app.use('/api', apiRoutes);
 
 
 var router = express.Router();
@@ -48,6 +48,22 @@ restify.serve(router, Search);
 
 app.use('/', router);
 
+app.use('/authenticate', function(req, res, next) {
+
+    User.findOne({ username: req.body.username }).select('name username password').exec(function(err, user) {         // find the user
+        if (err) throw err;                                                                                             // no user with that username was found
+        if (!user) { res.json({ success: false,  message: 'Authentication failed. User not found.' });
+        } else if (user ) {
+                var validPassword = user.comparePassword(req.body.password);                                                  // check if password matches
+            if (!validPassword) {
+                res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+            } else {
+                var token = jwt.sign({ name: user.name, username: user.username }, config.secret, { expiresInMinutes: 14400 });// if user is found and password is right create a token - // expires in 24 hours
+                res.json({ success: true, user:user, message: 'Enjoy your token!', token: token });
+            }
+        }
+    });
+});
 
 app.get('*', function(req, res) { res.sendFile(path.join(__dirname + '/client/index.html')); });
 

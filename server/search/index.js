@@ -8,6 +8,7 @@ var controller = require('./search.controller');
 var router = express.Router();
 
 router.get      ('/'        , controller.index);
+router.get      ('/me'       , controller.index);
 router.get      ('/:query'  , controller.show);
 router.post     ('/'        , controller.create);
 router.put      ('/:query'  , controller.update);

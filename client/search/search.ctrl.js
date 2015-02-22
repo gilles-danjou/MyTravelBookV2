@@ -1,7 +1,7 @@
 
 angular.module('searchCtrl', ['searchService'])
 
-    .controller('searchController', ['$scope', 'Search', function($scope, Search) {
+    .controller('searchController', ['$rootScope', '$scope', 'Search', function($rootScope, $scope, Search) {
         var vm = this;
         vm.type = 'create';
         updatePageTitle('Find a destination');
@@ -19,9 +19,9 @@ angular.module('searchCtrl', ['searchService'])
                     alert ('err: ' + data.message)
                 } else {
                     vm.message = data.message;
-                    $scope.search.mySearches.push(data);
+                    $scope.search.allSearches.push(data);
                 }
-                $scope.main.basicUsage('success')
+                $rootScope.notify({message : 'success'})
             });
         };
 
@@ -64,7 +64,7 @@ angular.module('searchCtrl', ['searchService'])
                 vm.processing = false;
                 vm.searchData = {};
                 vm.message = data.message;
-                $location.url('/searches');
+                $location.url('/searches-list');
             });
         };
     }]);

@@ -123,23 +123,8 @@ WebScraper.prototype.next = function() {
 };
 
 // use of the Scraper object without make any http request
-exports.createScraper = function () {
-    return new Scraper();
-};
+exports.run = function (html, script) {
 
-var Scraper = function () {
-    EventEmitter.call(this);
-    this.html = '';
-    this.script = '';
-    this.sandbox = {
-        $: '', // $ -> is the DOM document to be parsed
-        result: {} // result -> is the JSON object containing the result of parsing
-    };
-};
-
-util.inherits(Scraper, EventEmitter);
-
-Scraper.prototype.run = function (html, script) {
     this.html = html || '';
     this.script = script || '';
     this.emit('run');
@@ -162,9 +147,8 @@ Scraper.prototype.run = function (html, script) {
                 self.emit('abort', 'parsing script is returning null value!')
             }
         }
-    })
-}
-
+    }
+)};
 
 
 

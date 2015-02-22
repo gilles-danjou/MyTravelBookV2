@@ -21,7 +21,8 @@ var ArticleSchema   = new Schema({
 	"comment": String,
 		"title": String,
 		"summary": String
-	}
+	},
+    weather: String
 });
 
 ArticleSchema.pre('save', function(next) {

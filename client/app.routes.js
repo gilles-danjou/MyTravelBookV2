@@ -8,12 +8,13 @@ angular.module('app.routes', ['ngRoute'])
 		.when('/',                      {templateUrl: '/home/home.html'})
         .when('/login',                 {templateUrl: 'user/login.html',           controller  : 'appController',         controllerAs: 'login'})
         .when('/users-list',            {templateUrl: '/user/users.html',        controller: 'userController',           controllerAs: 'user'})
-        .when('/searches-list',          {templateUrl: '/search/searches-list.html'});
+        .when('/searches-list',         {templateUrl: '/search/searches-list.html'})
+        .when('/articles-list',         {templateUrl: '/article/articles-list.html'})
 
         //.when('/users/create',          {templateUrl: 'app/views/pages/users/single.html',     controller: 'userCreateController',     controllerAs: 'user'})
         //.when('/users/:user_id',        {templateUrl: 'app/views/pages/users/single.html',     controller: 'userEditController',       controllerAs: 'user'})
         //
-        //.when('/searches/mine',        {templateUrl: 'app/views/searches-list.html',           controller: 'searchController',         controllerAs: 'search'})
+        .when('/searches/mine',        {templateUrl: 'app/views/searches-list.html',           controller: 'searchController',         controllerAs: 'search'})
         //.when('/searches/all',         {templateUrl: 'app/views/search-list.html',             controller: 'searchController',         controllerAs: 'search'})
         //.when('/searches/create',      {templateUrl: 'app/views/pages/searches/single.html',   controller: 'searchCreateController',   controllerAs: 'search'})
         //.when('/searches/:search_id',  {templateUrl: 'app/views/pages/searches/single.html',   controller: 'searchEditController',     controllerAs: 'search'})

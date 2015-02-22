@@ -4,8 +4,7 @@
 angular.module('myTravelBook', [
     'btford.socket-io', 'angular-growl',
     'authService', 'app.routes',
-    'appCtrl', 'userCtrl',
-    'searchCtrl'
+    'appCtrl', 'userCtrl', 'articleCtrl', 'searchCtrl'
 
 ])
 
