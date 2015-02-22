@@ -5,10 +5,11 @@ angular.module('app.routes', ['ngRoute'])
 	$routeProvider
 
 		// route for the home page
-		.when('/',                      { templateUrl : '/home/home.html'})
+		.when('/',                      {templateUrl: '/home/home.html'})
+        .when('/login',                 {templateUrl: 'user/login.html',           controller  : 'appController',         controllerAs: 'login'})
+        .when('/users-list',            {templateUrl: '/user/users.html',        controller: 'userController',           controllerAs: 'user'})
+        .when('/searches-list',          {templateUrl: '/search/searches-list.html'});
 
-        .when('/login',                 {templateUrl : 'user/login.html',           controller  : 'appController',         controllerAs: 'login'})
-        .when('/users',                 {templateUrl: '/user/users.html',        controller: 'userController',           controllerAs: 'user'});
         //.when('/users/create',          {templateUrl: 'app/views/pages/users/single.html',     controller: 'userCreateController',     controllerAs: 'user'})
         //.when('/users/:user_id',        {templateUrl: 'app/views/pages/users/single.html',     controller: 'userEditController',       controllerAs: 'user'})
         //

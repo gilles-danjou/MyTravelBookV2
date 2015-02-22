@@ -31,7 +31,7 @@ module.exports = function(app, express) {
         }
     });*/
 
-    apiRouter.use('/users'         , require('./server/user'));
+    //apiRouter.use('/users'         , require('./server/user'));
     //apiRouter.use('/test'        , require('./api/test'));
     //apiRouter.use('/snipet'        , require('./api/snipet'));
     //apiRouter.use('/searches'      , require('./api/search'));

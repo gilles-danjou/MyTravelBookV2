@@ -13,9 +13,11 @@ var
     http       = require('http'),
     server     = http.createServer(app),
     io         = io.listen(server),
-    restify = require('express-restify-mongoose')
+    restify    = require('express-restify-mongoose')
 
-var User       = require('./server/user/user.model');
+var User       = require('./server/user/user.model'),
+    Search     = require('./server/search/search.model'),
+    Article    = require('./server/article/article.model');
 
 require('require-dir');
 require('./server/sockets/base')(io);
@@ -35,14 +37,19 @@ app.use(morgan('dev'));                                                         
 mongoose.connect(config.database);
 app.use(express.static(__dirname + '/client'));                                                                         // set static files location used for requests that our frontend will make
 
-var apiRoutes = require('./routes')(app, express);
-app.use('/api', apiRoutes);
+//var apiRoutes = require('./routes')(app, express);
+//app.use('/api', apiRoutes);
 
-//app.get('*', function(req, res) { res.sendFile(path.join(__dirname + '/client/index.html')); });
 
 var router = express.Router();
 restify.serve(router, User);
-app.use(router);
+restify.serve(router, Article);
+restify.serve(router, Search);
+
+app.use('/', router);
+
+
+app.get('*', function(req, res) { res.sendFile(path.join(__dirname + '/client/index.html')); });
 
 module.exports = app;
 server.listen(config.port);

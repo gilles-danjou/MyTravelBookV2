@@ -4,7 +4,7 @@ angular.module('searchService', [])
     var searchFactory = {};
 
 	searchFactory.get     = function(id)                { return $http.get     ('/api/searches/' + id);             };
-	searchFactory.all     = function()                  { return $http.get     ('/api/searches/');                 };
+	searchFactory.all     = function()                  { return $http.get     ('/api/v1/searches?populate=articles'); };
 	searchFactory.mine     = function()                 { return $http.get     ('/api/searches/mine');             };
 	searchFactory.create  = function(searchData)        { return $http.post    ('/api/searches/', searchData);      };
 	searchFactory.update  = function(id, searchData)    { return $http.put     ('/api/searches/' + id, searchData); };

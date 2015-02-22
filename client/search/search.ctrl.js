@@ -6,7 +6,7 @@ angular.module('searchCtrl', ['searchService'])
         vm.type = 'create';
         updatePageTitle('Find a destination');
 
-        Search.mine().success(function(data) { vm.processing = false; vm.mySearches = data; });
+        Search.all().success(function(data) { vm.processing = false; vm.allSearches = data; });
 
         vm.saveSearch = function() {
             vm.processing = true;
