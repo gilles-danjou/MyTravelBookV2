@@ -9,10 +9,9 @@ var
     bodyParser = require('body-parser'),
     morgan     = require('morgan'), 		// used to see requests
     jwt        = require('jsonwebtoken'),
-    io         = require('socket.io'),
     http       = require('http'),
     server     = http.createServer(app),
-    io         = io.listen(server),
+    WebSocketServer         = require('ws').Server,
     restify    = require('express-restify-mongoose')
 
 var User       = require('./server/user/user.model'),
@@ -20,8 +19,36 @@ var User       = require('./server/user/user.model'),
     Article    = require('./server/article/article.model');
 
 require('require-dir');
-require('./server/sockets/base')(io);
-io.set('log level', 1000);
+//require('./server/sockets/index')(io);
+
+/*
+var wss = new WebSocketServer({
+    server: server,
+    path: '/'
+});
+
+wss.on('connection', function (ws) {
+
+    ws.send('echo server');
+
+    ws.on('message', function (message) {
+        ws.send(message);
+    });
+
+});
+*/
+
+
+/*io.on('connection', function(socket){
+    console.log('a user connected');
+    //
+    //io.on('message', function (data) {
+    //    console.log('socket message recieved:' + data);
+    //});
+
+    //socket.broadcast.emit('user connected');
+
+});*/
 
 app.use(favicon('client/favicon.ico'));
 app.use(logger('dev'));
@@ -66,6 +93,8 @@ app.use('/authenticate', function(req, res, next) {
 });
 
 app.get('*', function(req, res) { res.sendFile(path.join(__dirname + '/client/index.html')); });
+
+
 
 module.exports = app;
 server.listen(config.port);

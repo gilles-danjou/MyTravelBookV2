@@ -22,11 +22,23 @@ var ArticleSchema   = new Schema({
 		"title": String,
 		"summary": String
 	},
-    weather: String
+    weather: String,
+    weatherDetails: [{
+        "weatherHTML"           : String,
+        "Average T max (°C)"    : String,
+        "Average T min (°C)"    : String,
+        "Month"                 : String,
+        "Precipitations(mm)"    : String,
+        "Rating"                : String,
+        "Record T min (°C)"     : String,
+        "Record Tmax (°C)"      : String,
+        "Sunlight(h/d)"         : String,
+        "Wet days"              : String
+    }]
 });
 
 ArticleSchema.pre('save', function(next) {
-	console.log('A new article "%s" was inserted:\n', this);
+	console.log('A new article was inserted:\n');
 	next();
 });
 

@@ -8,6 +8,11 @@ angular.module('searchCtrl', ['searchService'])
 
         Search.all().success(function(data) { vm.processing = false; vm.allSearches = data; });
 
+        //socket.on('newArticle', function (oneArticle) {
+        //    vm.allSearches += oneArticle;
+        //    alert('e');
+        //});
+
         vm.saveSearch = function() {
             vm.processing = true;
             vm.error = '';

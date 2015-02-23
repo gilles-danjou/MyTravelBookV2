@@ -1,11 +1,11 @@
 'use strict';
 
-// Declare app level module which depends on views, and components
+ // Declare app level module which depends on views, and components
 angular.module('myTravelBook', [
-    'btford.socket-io', 'angular-growl',
+     'angular-growl',
     'authService', 'app.routes',
     'appCtrl', 'userCtrl', 'articleCtrl', 'searchCtrl'
-
+    //'btford.socket-io',
 ])
 
 .config(function($httpProvider) {                                                                                       // application configuration to integrate token into requests
@@ -16,6 +16,11 @@ angular.module('myTravelBook', [
     growlProvider.globalTimeToLive(10000);
 }])
 
-.factory('socket', function (socketFactory) {
-    return socketFactory();
-});
+//.factory('mySocket', function (socketFactory) {
+//        var myIoSocket = io.connect('/');
+//
+//        var  mySocket = socketFactory({
+//            ioSocket: myIoSocket
+//        });
+//    return mySocket;
+//});

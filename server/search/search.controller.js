@@ -12,9 +12,9 @@ var request     = require('request');
 var path        = require('path');
 var Search      = require('./search.model');
 var User        = require('../user/user.model');
-var Scraper     = require('../scraper/scraper.model');
 var Article     = require('../article/article.model');
-var scraper     = require('../webscraper/webscraper');
+var Scraper     = require('../scraper/scraper.model');
+var scraper     = require('../scraper/scraper');
 var google      = require('google');
 
 var fs = require('fs');
@@ -32,47 +32,56 @@ exports.index = function(req, res) {
 
 exports.create = function(req, res) {
 
-    var agent = scraper.create();
-    agent.on('done', function(url, result){
-        console.log(result)
-        var newArticle = new Article(result);
-        newArticle.save();
+    Search.findOneAndUpdate({'query' : req.body.query}, {'query' : req.body.query}, {'upsert':true}, function(err, search) {
 
-        console.log('Scraped finished: ' + url);
-    });
+        var agent = scraper.create();
+        agent.on('done', function(url, result){
+            result.searches = [search];
+            console.log('------------------------')
+            console.log(result);
+            console.log('------------------------')
+            Article.create(result, function(err, newArticle) {
+                search.articles.push(newArticle);
+                search.save();
+            });
 
-    Scraper
-        .find({active : true})
-        .deepPopulate('scraperChild')
-        .exec(function (err, scrapers) {
-            scrapers.forEach (function (scraper, index, array) {
-                switch (scraper._doc.type) {
-                    case "google":
 
-                        google.resultsPerPage = 5;
-                        console.log('Google Search: ' + scraper._doc.query + ' ' + req.body.query);
-                        google(scraper._doc.query + ' ' + req.body.query , function (err, next, links) {
-                            if (links.length>0) {
-                                if (err) console.error(err);
-                                for (var i = 0; i < links.length; ++i) {
-                                    console.log('Google ->  ' + links[i].link);
-                                    // console.log(links[i].title + ' - ' + links[i].description + "\n");
-                                }
-                                console.log('Scrape: ' + links[0].link);
-                                agent.start(links[0].link, '', 'scrape-thebesttimetovisit.js');
-                            }
-                        });
-
-                        break;
-
-                    case "scrape":
-
-                        agent.start(scraper._doc.url + req.body.query, '', 'scrape-wiki-info.js');
-
-                        break;
-                }
-            })
+            console.log('Scraped finished: ' + url);
         });
+
+        Scraper
+            .find({active : true})
+            .deepPopulate('scraperChild')
+            .exec(function (err, scrapers) {
+                scrapers.forEach (function (scraper, index, array) {
+                    switch (scraper._doc.type) {
+                        case "google":
+
+                            google.resultsPerPage = 5;
+                            console.log('Google Search: ' + scraper._doc.query + ' ' + req.body.query);
+                            google(scraper._doc.query + ' ' + req.body.query , function (err, next, links) {
+                                if (links.length>0) {
+                                    if (err) console.error(err);
+                                    for (var i = 0; i < links.length; ++i) {
+                                        console.log('Google ->  ' + links[i].link);
+                                        // console.log(links[i].title + ' - ' + links[i].description + "\n");
+                                    }
+                                    console.log('Scrape: ' + links[0].link);
+                                    agent.start(links[0].link, '', 'scrape-thebesttimetovisit.js');
+                                }
+                            });
+
+                            break;
+
+                        case "scrape":
+
+                            agent.start(scraper._doc.url + req.body.query, '', 'scrape-wiki-info.js');
+
+                            break;
+                    }
+                })
+            });
+    });
 
     res.json('finished');
 

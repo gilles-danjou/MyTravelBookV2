@@ -13,9 +13,12 @@ var Article  = require('./article.model');
 
 // ================= /articles =================
 exports.index = function(req, res) {
-    Article.find({}, function(err, articles) {
+    Article
+        .find({})
+            .deepPopulate('weatherDetails')
+            .exec(function (err, articles) {
         if (err) res.send(err);
-        res.json(articles);	                                                                        			// return the users
+        res.json(articles);
     });
 };
 
