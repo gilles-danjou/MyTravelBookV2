@@ -37,15 +37,13 @@ exports.create = function(req, res) {
         var agent = scraper.create();
         agent.on('done', function(url, result){
             result.searches = [search];
-            console.log('------------------------')
-            console.log(result);
-            console.log('------------------------')
+            //console.log('------------------------')
+            //console.log(result);
+            //console.log('------------------------')
             Article.create(result, function(err, newArticle) {
                 search.articles.push(newArticle);
                 search.save();
             });
-
-
             console.log('Scraped finished: ' + url);
         });
 
@@ -62,10 +60,16 @@ exports.create = function(req, res) {
                             google(scraper._doc.query + ' ' + req.body.query , function (err, next, links) {
                                 if (links.length>0) {
                                     if (err) console.error(err);
+                                    var articlesLinks = [];
                                     for (var i = 0; i < links.length; ++i) {
                                         console.log('Google ->  ' + links[i].link);
-                                        // console.log(links[i].title + ' - ' + links[i].description + "\n");
+                                        articlesLinks.push({ link: links[i].link , title: links[i].title, description: links[i].description });
                                     }
+                                    Article.create({ links: articlesLinks, 'type': 'links', searches: [search] }, function(err, newArticleLinks) {
+                                        search.articles.push(newArticleLinks);
+                                        search.save();
+                                    });
+
                                     console.log('Scrape: ' + links[0].link);
                                     agent.start(links[0].link, '', 'scrape-thebesttimetovisit.js');
                                 }

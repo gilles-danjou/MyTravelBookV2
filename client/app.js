@@ -2,9 +2,10 @@
 
  // Declare app level module which depends on views, and components
 angular.module('myTravelBook', [
-     'angular-growl',
+     'angular-growl', 'uiGmapgoogle-maps',
     'authService', 'app.routes',
-    'appCtrl', 'userCtrl', 'articleCtrl', 'searchCtrl'
+    'appCtrl', 'userCtrl', 'articleCtrl', 'searchCtrl', 'earthCtrl'
+
     //'btford.socket-io',
 ])
 

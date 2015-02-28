@@ -8,6 +8,10 @@ angular.module('searchCtrl', ['searchService'])
 
         Search.all().success(function(data) { vm.processing = false; vm.allSearches = data; });
 
+        //$scope.$on('runCarousel', function(runCarouselEvent) {
+        //
+        //    $('.carousel').carousel({interval: 2000});
+        //});
         //socket.on('newArticle', function (oneArticle) {
         //    vm.allSearches += oneArticle;
         //    alert('e');

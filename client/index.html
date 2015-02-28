@@ -33,6 +33,11 @@
     <!--<script src="/lib/ng-infinite-scroll.js" type="text/javascript"></script>-->
 	<script src="/_resources/plugins/pace/pace.min.js"></script>
 
+    <script src='/_resources/js/lodash.js'></script>
+    <script src='/_resources/js/angular-google-maps.js'></script>
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+
+
     <script src="/app.routes.js"></script>
 
     <!-- controllers -->
@@ -40,12 +45,14 @@
     <script src="/user/user.ctrl.js"></script>
     <script src="/search/search.ctrl.js"></script>
     <script src="/article/article.ctrl.js"></script>
+    <script src="/earth/earth.ctrl.js"></script>
 
     <!-- services -->
     <script src="/services/authService.js"></script>
     <script src="/user/user.service.js"></script>
     <script src="/search/search.service.js"></script>
     <script src="/article/article.service.js"></script>
+    <script src="/earth/earth.service.js"></script>
 
 
     <script src="/app.js"></script>
@@ -639,6 +646,8 @@
 										<a href="#"><i class="fa fa-th"></i><span class="menu-title"><strong>Layouts</strong></span><i class="arrow"></i></a>
 
 										<ul class="collapse in">
+                                            <li><a href="/earth"><i class="fa fa-user"></i>Earth</a></li>
+                                            <li><a href="/map"><i class="fa fa-user"></i>Travel map</a></li>
                                             <li><a href="/users-list"><i class="fa fa-user"></i>Users</a></li>
                                             <li><a href="/articles-list"><i class="fa fa-list-alt"></i>Articles</a></li>
                                             <li><a href="/searches-list"><i class="fa fa-user"></i>Searches</a></li>
@@ -1020,5 +1029,9 @@
     <script src="/_resources/plugins/datatables/media/js/jquery.dataTables.js"></script>
     <script src="/_resources/plugins/datatables/media/js/dataTables.bootstrap.js"></script>
     <script src="/_resources/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+    <script src="http://www.webglearth.com/v2/api.js"></script>
+    <script src="/earth/js/webgl.js"></script>
+    <!--<script src="/earth/js/frontend.js"></script>-->
+
 </body>
 </html>

@@ -31,8 +31,9 @@ module.exports = function(app, express) {
         }
     });
 
-    apiRouter.use('/users'      , require('./server/user'));
+    app.use(express.static(__dirname + '/client'));
 
+    apiRouter.use('/users'      , require('./server/user'));
     apiRouter.use('/searches'      , require('./server/search'));
     //apiRouter.use('/test'        , require('./api/test'));
     //apiRouter.use('/snipet'        , require('./api/snipet'));
