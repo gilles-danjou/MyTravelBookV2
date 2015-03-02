@@ -88,13 +88,17 @@ angular.module('mapCtrl', ['uiGmapgoogle-maps'])
 
 
 
+function initCall() {
+    console.log('Google maps api initialized.');
+    angular.bootstrap(document.getElementById('map'), ['doc.ui-map']);
+}
 
-//app.controller('MapCtrl', ['$scope', function($scope) {
 angular.module('mapCtrl', ['ui.map'])
 
 .controller('mapController', ['$scope', '$timeout', function ($scope, $timeout) {
 
         $scope.userLocation = { latitude: 48.8666666667, longitude: 2.33333333333 };
+        $scope.myMarkers = [];
 
 
         $scope.getLocation = function() {
@@ -109,9 +113,12 @@ angular.module('mapCtrl', ['ui.map'])
             this.location = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
             $scope.userLocation = { 'latitude': position.coords.longitude, longitude: position.coords.latitude };
             //$scope.map.dynamicMarkers.push($scope.userLocation);
+            $scope.myMarkers.push(new google.maps.Marker({
+                map: $scope.myMap,
+                position: $params[0].latLng
+            }));
         }
 
-        $scope.myMarkers = [];
 
         $scope.mapOptions = {
             center: new google.maps.LatLng(35.784, -78.670),
