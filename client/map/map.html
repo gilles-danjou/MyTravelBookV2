@@ -1,33 +1,30 @@
-
-<div class="container" data-ng-controller="mapController">
-
+<div ng-controller="mapController as map">
     <div class="row">
-        [alt] key -> zoom area
-        <div>{{map.location}}</div>
-            <button class="col-md-2 btn btn-success" ng-click="map.refresh()">Refresh Map</button>
-    </div>
-    <div class="row">
-        <ui-gmap-google-map class="col-md-12"
-                            center="map.center"
-                            zoom="map.zoom"
-                            draggable="true"
-                            control="map.control"
-                            id="map"
-                            center="map.center"
-                            pan="map.pan"
-                            zoom="map.zoom"
-                            draggable="true"
-                            refresh="map.refresh"
-                            options="map.options"
-                            events="map.events"
-                            bounds="map.bounds">
+        <div class="col-md-3">
+            <h4>Click to add a marker!</h4>
+            <p>{{zoomMessage}}</p>
+            <ul class="list-unstyled">
+                <li ng-repeat="marker in myMarkers">
+                    <a class="btn btn-default" ng-click="myMap.panTo(marker.getPosition())">
+                        Pan to Marker {{$index}}
+                    </a>
+                </li>
+            </ul>
 
-             <ui-gmap-markers models="map.dynamicMarkers" coords="'self'" icon="'icon'" click="'onClicked'" events="markersEvents">
-                 <ui-gmap-windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>
-                    <p ng-non-bindable>This is an info window at {{ latitude | number:4 }}, {{ longitude | number:4 }}!</p>
-                </ui-gmap-windows>
-             </ui-gmap-markers>
-            <ui-gmap-drag-zoom keyboardkey="'alt'"></ui-gmap-drag-zoom>
-        </ui-gmap-google-map>
+            <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
+                 ui-event="{'map-click': 'openMarkerInfo(marker)'}">
+            </div>
+
+            <div ui-map-info-window="myInfoWindow">
+                <h1>Marker</h1>
+                Lat: <input ng-model="currentMarkerLat">, Lng: <input ng-model="currentMarkerLng">
+                <a class="btn btn-primary" ng-click="setMarkerPosition(currentMarker, currentMarkerLat, currentMarkerLng)">Set Position</a>
+            </div>
+        </div>
+
+        <div id="map_canvas" ui-map="myMap" class="col-md-8 map"
+             ui-event="{'map-click': 'addMarker($event, $params)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }"
+             ui-options="mapOptions">
+        </div>
     </div>
 </div>

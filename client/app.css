@@ -22,3 +22,9 @@
 }
 
 .angular-google-map-container { height: 400px; }
+
+.map {
+    height: 400px;
+    width: 600px;
+    margin: auto;
+}
