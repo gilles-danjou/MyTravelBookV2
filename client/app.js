@@ -2,9 +2,9 @@
 
  // Declare app level module which depends on views, and components
 angular.module('myTravelBook', [
-     'angular-growl', 'uiGmapgoogle-maps',
+    'angular-growl',
     'authService', 'app.routes',
-    'appCtrl', 'userCtrl', 'articleCtrl', 'searchCtrl', 'earthCtrl'
+    'appCtrl', 'userCtrl', 'articleCtrl', 'searchCtrl', 'earthCtrl', 'mapCtrl'
 
     //'btford.socket-io',
 ])
@@ -25,3 +25,9 @@ angular.module('myTravelBook', [
 //        });
 //    return mySocket;
 //});
+
+/*.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
+    GoogleMapApiProvider.configure({
+        //china: true
+    });
+}]);*/

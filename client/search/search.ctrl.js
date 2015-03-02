@@ -21,17 +21,19 @@ angular.module('searchCtrl', ['searchService'])
             vm.processing = true;
             vm.error = '';
 
-            Search.create(vm.searchData).success(function(data) {
-                vm.processing = false;
 
-                if (data.message) {
-                    alert ('err: ' + data.message)
-                } else {
-                    vm.message = data.message;
-                    $scope.search.allSearches.push(data);
-                }
-                $rootScope.notify({message : 'success'})
-            });
+            console.log('save search and scraping deactivated...')
+            //Search.create(vm.searchData).success(function(data) {
+            //    vm.processing = false;
+            //
+            //    if (data.message) {
+            //        alert ('err: ' + data.message)
+            //    } else {
+            //        vm.message = data.message;
+            //        $scope.search.allSearches.push(data);
+            //    }
+            //    $rootScope.notify({message : 'success'})
+            //});
         };
 
         vm.deleteSearch = function(id) {

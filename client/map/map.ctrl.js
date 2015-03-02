@@ -1,49 +1,56 @@
-angular.module('mapCtrl', [])
+angular.module('mapCtrl', ['uiGmapgoogle-maps'])
 
-.controller('mapController', ['$scope', 'Map', function($scope, Map) {
+.controller('mapController', ['$scope', "uiGmapLogger", "uiGmapGoogleMapApi", function ($scope, $log, GoogleMapApi) {
 
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
-
-
-
-}])
+    $scope.userLocation = { latitude: 48.8666666667, longitude: 2.33333333333 };
 
 
+    $scope.getLocation = function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition($scope.showPosition);
+        } else {
+            $scope.userLocation = "Geolocation is not supported by this browser.";
+        }
+    }
 
+    $scope.showPosition = function(position) {
+        this.location = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+        $scope.userLocation = { 'latitude': position.coords.longitude, longitude: position.coords.latitude };
+        //$scope.map.dynamicMarkers.push($scope.userLocation);
+    }
 
+    $scope.map = {
+        doCluster: true,
+        dragZoom: {options: {}},
+        center: $scope.userLocation,
+        pan: true,
+        zoom: 3,
+        refresh: false,
+        visualRefresh: true,
+        events: {},
+        bounds: {}
+    };
 
-// controller applied to map creation page
-.controller('mapCreateController', function(Map) {
-	var vm = this;
-	vm.type = 'create';
-	vm.saveMap = function() {
-		vm.processing = true;
-		vm.message = '';
-		Map.create(vm.mapData).success(function(data) {
-				vm.mapData = {};
-				vm.message = data.message;
-                vm.processing = false;
-			});
-	};	
-
-})
-
-// controller applied to map edit page
-.controller('mapEditController', function($routeParams, Map) {
-
-	var vm = this;
-	vm.type = 'edit';
-
-	Map.get($routeParams.map_id).success(function(data) { vm.mapData = data; });
-
-	vm.saveMap = function() {
-		vm.processing = true;
-		vm.message = '';
-		Map.update($routeParams.map_id, vm.mapData).success(function(data) {
-				vm.processing = false;
-				vm.mapData = {};
-				vm.message = data.message;
-			});
-	};
-
-});
+    var dynamicMarkers = [
+        {   id: 1,
+            latitude: 46,
+            longitude: -79
+        },
+        {
+            id: 2,
+            latitude: 33,
+            longitude: -79
+        }
+    ];
+    _.each(dynamicMarkers, function (marker) {
+        marker.closeClick = function () {
+            marker.showWindow = false;
+            $scope.$apply();
+        };
+        marker.onClicked = function () {
+            $scope.onMarkerClicked(marker);
+        };
+    });
+    $scope.map.dynamicMarkers = dynamicMarkers;
+$scope.getLocation();
+}]);
