@@ -3,6 +3,7 @@
  // Declare app level module which depends on views, and components
 angular.module('myTravelBook', [
     'angular-growl',
+    //'uiGmapgoogle-maps',
     'authService', 'app.routes',
     'appCtrl', 'userCtrl', 'articleCtrl', 'searchCtrl', 'earthCtrl', 'mapCtrl'
 
@@ -26,8 +27,10 @@ angular.module('myTravelBook', [
 //    return mySocket;
 //});
 
-/*.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
-    GoogleMapApiProvider.configure({
-        //china: true
-    });
-}]);*/
+//.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
+//    GoogleMapApiProvider.configure({
+//        //    key: 'your api key',
+//        v: '3.17',
+//        libraries: 'weather,geometry,visualization'
+//    });
+//}]);

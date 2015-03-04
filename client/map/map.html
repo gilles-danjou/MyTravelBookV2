@@ -4,16 +4,10 @@
             <h4>Click to add a marker!</h4>
             <p>{{zoomMessage}}</p>
             <ul class="list-unstyled">
-                <li ng-repeat="marker in myMarkers">
-                    <a class="btn btn-default" ng-click="myMap.panTo(marker.getPosition())">
-                        Pan to Marker {{$index}}
-                    </a>
-                </li>
+                <li ng-repeat="marker in myMarkers"><a class="btn btn-default" ng-click="myMap.panTo(marker.getPosition())">Pan to Marker {{$index}}</a></li>
             </ul>
 
-            <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]"
-                 ui-event="{'map-click': 'openMarkerInfo(marker)'}">
-            </div>
+            <div ng-repeat="marker in myMarkers" ui-map-marker="myMarkers[$index]" ui-event="{'map-click': 'openMarkerInfo(marker)'}"></div>
 
             <div ui-map-info-window="myInfoWindow">
                 <h1>Marker</h1>

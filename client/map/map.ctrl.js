@@ -123,7 +123,7 @@ angular.module('mapCtrl', ['ui.map'])
         $scope.mapOptions = {
             center: new google.maps.LatLng(35.784, -78.670),
             zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.SATELLITE
         };
 
         $scope.addMarker = function ($event, $params) {
