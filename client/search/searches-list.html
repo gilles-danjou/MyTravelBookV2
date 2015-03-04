@@ -4,129 +4,170 @@
 <!--</div>-->
 
 <div class="row" ng-controller="searchController as search">
-    <searches ng-repeat="oneSearch in search.allSearches">
-        <h1>{{oneSearch.query}}</h1>
-        <div class="row">
 
-            <articles ng-repeat="oneArticle in oneSearch.articles" on-finish-render="ngRepeatFinished">
-                <div class="col-lg-4" ng-show="oneArticle.info">
-                    <article class="panel">
-                        {{oneArticle.info.query}}
-                        <div class="panel-bg-cover">
-                            <img class="img-responsive" src="{{oneArticle.info.image}}" alt="Image">
-                        </div>
-                        <div class="panel-media">
-                            <img src="{{oneArticle.info.bubble}}" class="panel-media-img img-circle img-border-light" alt="Profile Picture">
+    <div class="col-lg-12">
+        <div class="tab-base">
+
+            <!--Nav Tabs-->
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" data-target="#demo-lft-tab-1" aria-expanded="true">Home <span class="badge badge-purple">27</span></a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" data-target="#demo-lft-tab-2" aria-expanded="false">Profile</a>
+                </li>
+                <li class="">
+                    <a data-toggle="tab" data-target="#demo-lft-tab-3" aria-expanded="false">Setting</a>
+                </li>
+            </ul>
+
+            <!--Tabs Content-->
+            <div class="tab-content">
+                <div id="demo-lft-tab-1" class="tab-pane fade active in">
+
+                        <searches ng-repeat="oneSearch in search.allSearches">
+                            <h1>{{oneSearch.query}}</h1>
                             <div class="row">
-                                <div class="col-lg-7">
-                                    <h3 class="panel-media-heading">{{oneArticle.info.imageTitle}}</h3>
-                                    <a href="{{oneArticle.link1.uri}}" class="btn-link">{{oneArticle.info.link1.label}}</a>
-                                    <p class="text-muted mar-btm">{{oneArticle.info.comment}}</p>
+
+                                <articles ng-repeat="oneArticle in oneSearch.articles" on-finish-render="ngRepeatFinished">
+                                    <div class="col-lg-4" ng-show="oneArticle.info">
+                                        <article class="panel">
+                                            {{oneArticle.info.query}}
+                                            <div class="panel-bg-cover">
+                                                <img class="img-responsive" src="{{oneArticle.info.image}}" alt="Image">
+                                            </div>
+                                            <div class="panel-media">
+                                                <img src="{{oneArticle.info.bubble}}" class="panel-media-img img-circle img-border-light" alt="Profile Picture">
+                                                <div class="row">
+                                                    <div class="col-lg-7">
+                                                        <h3 class="panel-media-heading">{{oneArticle.info.imageTitle}}</h3>
+                                                        <a href="{{oneArticle.link1.uri}}" class="btn-link">{{oneArticle.info.link1.label}}</a>
+                                                        <p class="text-muted mar-btm">{{oneArticle.info.comment}}</p>
+                                                    </div>
+                                                    <div class="col-lg-5 text-lg-right">
+                                                        <a ng-click="search.deleteArticle(oneArticle._id)">
+                                                            <button class="btn btn-danger btn-labeled fa fa-remove">Delete</button>
+                                                        </a>
+                                                        <button class="btn btn-sm btn-mint btn-icon fa fa-envelope icon-lg"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body no-padding-top">
+                                                <h4>{{oneArticle.info.title}}</h4>
+                                                {{oneArticle.info.summary}}
+                                            </div>
+                                        </article>
+                                    </div>
+
+                                    <!--<div class="col-lg-5" ng-show="oneArticle.weather">-->
+                                    <!--<article class="panel ">-->
+                                    <!--<div class="panel-heading">-->
+                                    <!--<h3 class="panel-title">Weather in {{oneArticle.info.query}}</h3>-->
+                                    <!--</div>-->
+                                    <!--<div class="panel-body weather">-->
+                                    <!--{{oneArticle.weather}}-->
+                                    <!--</div>-->
+                                    <!--</article>-->
+                                    <!--</div>-->
+
+                                    <div class="col-lg-4" ng-show="oneArticle.weatherDetails">
+                                        <article class="panel">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">Weather in {{oneSearch.query}} in a year</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <table id="demo-dt-selection" class="table-responsive table-hover table-condensed table-striped table-bordered" cellspacing="0" width="100%">
+                                                    <thead>
+                                                    <tr>
+                                                        <th ng-repeat="(key, value) in oneArticle.weatherDetails[0]">
+                                                            <span ng-hide="key=='_id'">{{key}}</span>
+                                                        </th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="weather in oneArticle.weatherDetails" on-finish-render="ngRepeatFinished">
+                                                        <td ng-repeat="(key, weatherData) in weather">
+                                                            <span ng-hide="key=='_id'">{{weatherData}}</span>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </article>
+                                    </div>
+
+
+                                </articles>
+                                <div class="col-lg-4">
+                                    <div class="panel">
+
+                                        <!--Carousel-->
+                                        <!--===================================================-->
+                                        <div id="demo-carousel" class="carousel slide" data-ride="carousel" on-finish-render="ngRepeatFinished">
+
+                                            <!--Indicators-->
+                                            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                                            <ol class="carousel-indicators dark out">
+                                                <li class="active" data-slide-to="0" data-target="#demo-carousel"></li>
+                                                <li data-slide-to="1" data-target="#demo-carousel"></li>
+                                                <li class="" data-slide-to="2" data-target="#demo-carousel"></li>
+                                            </ol>
+                                            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+                                            <div class="carousel-inner text-center">
+
+                                                <!--Item 1-->
+                                                <div class="item active">
+                                                    <h3>First slide label</h3>
+                                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                                </div>
+
+                                                <!--Item 2-->
+                                                <div class="item">
+                                                    <h3>Second slide label</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                </div>
+
+                                                <!--Item 3-->
+                                                <div class="item">
+                                                    <h3>Third slide label</h3>
+                                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                                </div>
+                                            </div>
+
+                                            <!--carousel-control-->
+                                            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                                            <a class="carousel-control left" data-slide="prev" data-target="#demo-carousel"><i class="fa fa-chevron-left fa-2x"></i></a>
+                                            <a class="carousel-control right" data-slide="next" data-target="#demo-carousel"><i class="fa fa-chevron-right fa-2x"></i></a>
+                                            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+                                        </div>
+                                        <!--===================================================-->
+                                        <!--End Carousel-->
+
+
+                                    </div>
                                 </div>
-                                <div class="col-lg-5 text-lg-right">
-                                    <a ng-click="search.deleteArticle(oneArticle._id)">
-                                        <button class="btn btn-danger btn-labeled fa fa-remove">Delete</button>
-                                    </a>
-                                    <button class="btn btn-sm btn-mint btn-icon fa fa-envelope icon-lg"></button>
-                                </div>
+
                             </div>
-                        </div>
-                        <div class="panel-body no-padding-top">
-                            <h4>{{oneArticle.info.title}}</h4>
-                            {{oneArticle.info.summary}}
-                        </div>
-                    </article>
+                        </searches>
+
                 </div>
-
-                <!--<div class="col-lg-5" ng-show="oneArticle.weather">-->
-                <!--<article class="panel ">-->
-                <!--<div class="panel-heading">-->
-                <!--<h3 class="panel-title">Weather in {{oneArticle.info.query}}</h3>-->
-                <!--</div>-->
-                <!--<div class="panel-body weather">-->
-                <!--{{oneArticle.weather}}-->
-                <!--</div>-->
-                <!--</article>-->
-                <!--</div>-->
-
-                <div class="col-lg-4" ng-show="oneArticle.weatherDetails">
-                    <article class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Weather in {{oneSearch.query}} in a year</h3>
-                        </div>
-                        <div class="panel-body">
-                            <table id="demo-dt-selection" class="table-responsive table-hover table-condensed table-striped table-bordered" cellspacing="0" width="100%">
-                                <thead>
-                                <tr>
-                                    <th ng-repeat="(key, value) in oneArticle.weatherDetails[0]">
-                                        <span ng-hide="key=='_id'">{{key}}</span>
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="weather in oneArticle.weatherDetails" on-finish-render="ngRepeatFinished">
-                                    <td ng-repeat="(key, weatherData) in weather">
-                                        <span ng-hide="key=='_id'">{{weatherData}}</span>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </article>
-                </div>
-
-
-            </articles>
-            <div class="col-lg-4">
-                <div class="panel">
-
-                    <!--Carousel-->
-                    <!--===================================================-->
-                    <div id="demo-carousel" class="carousel slide" data-ride="carousel" on-finish-render="ngRepeatFinished">
-
-                        <!--Indicators-->
-                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                        <ol class="carousel-indicators dark out">
-                            <li class="active" data-slide-to="0" data-target="#demo-carousel"></li>
-                            <li data-slide-to="1" data-target="#demo-carousel"></li>
-                            <li class="" data-slide-to="2" data-target="#demo-carousel"></li>
-                        </ol>
-                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
-                        <div class="carousel-inner text-center">
-
-                            <!--Item 1-->
-                            <div class="item active">
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-
-                            <!--Item 2-->
-                            <div class="item">
-                                <h3>Second slide label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-
-                            <!--Item 3-->
-                            <div class="item">
-                                <h3>Third slide label</h3>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </div>
-                        </div>
-
-                        <!--carousel-control-->
-                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-                        <a class="carousel-control left" data-slide="prev" data-target="#demo-carousel"><i class="fa fa-chevron-left fa-2x"></i></a>
-                        <a class="carousel-control right" data-slide="next" data-target="#demo-carousel"><i class="fa fa-chevron-right fa-2x"></i></a>
-                        <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-
+                <div id="demo-lft-tab-2" class="tab-pane fade" my-customer>
+                    <div>
+                        <button  style="position: relative; left: 45%; height: 40px;" ng-click="refresh()">New page</button>
                     </div>
-                    <!--===================================================-->
-                    <!--End Carousel-->
 
+                    <div infinite-scroll="fetchNext()" infinite-scroll-distance="1" style="display:inline-block; width:100%; height:100%">
+                        <div data-masonry data-x-margin="20" data-y-margin="30" data-img-width="250" style="margin:3% 2% 0 2%; padding: 20px 1% 0; border:1px solid black; width:100%; float:left;">
+                            <div data-ng-repeat="image in images" style="border:1px solid black; border-radius:5px; padding:1px;">
+                                <img ng-src="http://lorempixel.com/{{image.src}}">
+                                <div>{{image.title}}</div>
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
-    </searches>
+    </div>
 </div>
