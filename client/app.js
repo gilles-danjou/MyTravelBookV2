@@ -5,7 +5,8 @@ angular.module('myTravelBook', [
     'angular-growl',
     //'uiGmapgoogle-maps',
     'authService', 'app.routes',
-    'appCtrl', 'userCtrl', 'articleCtrl', 'searchCtrl', 'earthCtrl', 'mapCtrl'
+    'appCtrl', 'homeCtrl',
+    'userCtrl', 'articleCtrl', 'searchCtrl', 'earthCtrl', 'mapCtrl'
 
     //'btford.socket-io',
 ])
@@ -17,6 +18,7 @@ angular.module('myTravelBook', [
 .config(['growlProvider', function (growlProvider) {
     growlProvider.globalTimeToLive(10000);
 }])
+
 
 //.factory('mySocket', function (socketFactory) {
 //        var myIoSocket = io.connect('/');
