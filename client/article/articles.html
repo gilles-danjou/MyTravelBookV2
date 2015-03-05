@@ -1,0 +1,41 @@
+<div ng-controller="articleMasonryController as article">
+    <div>
+        <button  style="position: relative; left: 45%; height: 40px;" ng-click="refresh()">New page</button>
+    </div>
+    <div class="row">
+        <div infinite-scroll="fetchNext()" infinite-scroll-distance="1" style="display:inline-block; width:100%; height:100%">
+            <div data-masonry data-x-margin="20" data-y-margin="30"  style="margin:3% 2% 0 2%; padding: 20px 1% 0; width:100%; float:left;">
+                <div data-ng-repeat="image in images">
+                    <!--<img ng-src="http://lorempixel.com/{{image.src}}">-->
+                    <!--<div>{{image.title}}</div>-->
+                    <div class="col-lg-4">
+                        <div class="panel">
+                            <div class="panel-bg-cover">
+                                <img class="img-responsive" src="/_resources/img/thumbs/img1.jpg" alt="Image">
+                            </div>
+                            <div class="panel-media">
+                                <img ng-src="http://lorempixel.com/{{image.src}}" class="panel-media-img img-circle img-border-light" alt="Profile Picture">
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <h3 class="panel-media-heading">{{image.title}}</h3>
+                                        <a href="#" class="btn-link">@stephen_doe</a>
+                                        <p class="text-muted mar-btm">Web and Graphic designer</p>
+                                    </div>
+                                    <div class="col-lg-5 text-lg-right">
+                                        <button class="btn btn-sm btn-primary">Add Friend</button>
+                                        <button class="btn btn-sm btn-mint btn-icon fa fa-envelope icon-lg"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <h4>Consectetur adipisicing</h4>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

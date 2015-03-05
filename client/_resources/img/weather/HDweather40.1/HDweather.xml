@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<themename>HDweather</themename>
+
+<item>framework-res.apk</item>
+<path>/system/framework/</path>
+<description>(Requires Reboot)</description>
