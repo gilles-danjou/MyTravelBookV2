@@ -1,15 +1,14 @@
-angular.module('homeCtrl', ['mgo-angular-wizard'])
+angular.module('homeCtrl', [])
 
-// our controller for the form
-// =============================================================================
-    .controller('formController', function($scope) {
 
-        // we will store all of our form data in this object
-        $scope.formData = {};
+.controller('homeController', function($scope) {
 
-        // function to process the form
-        $scope.processForm = function() {
-            alert('awesome!');
-        };
+    // we will store all of our form data in this object
+    $scope.formData = {};
 
-    });
+    // function to process the form
+    $scope.processForm = function() {
+        alert('awesome!');
+    };
+
+});

@@ -10,6 +10,8 @@
  	<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">-->
     <script src="/_resources/js/jquery-2.1.1.min.js"></script>
     <link href="/_resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/_resources/css/bootstrap-glyphicons.css" rel="stylesheet">
+
 	<link href="/_resources/css/nifty.min.css" rel="stylesheet">
 	<link href="/_resources/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<link href="/_resources/plugins/switchery/switchery.min.css" rel="stylesheet">
@@ -32,9 +34,6 @@
     <script src="/bower_components/angular-growl-v2/build/angular-growl.js"></script>
 
 
-
-    /Users/gillesdanjou/Desktop/applications/angular-wizard/dist/angular-wizard.js
-
     <script src="/_resources/js/angular-ui-router.min.js"></script>
     <script src="/_resources/js/angular-animate.min.js"></script>
     <!--<script src="/lib/ng-infinite-scroll.js" type="text/javascript"></script>-->
@@ -50,7 +49,11 @@
     <script src="/_resources/js/ui-map.min.js"></script>
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
 
+    <script src="/bower_components/moment/min/moment.min.js"></script>
+    <link href="/bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
+    <script src="/bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
 
     <script src="/app.routes.js"></script>
 
@@ -62,6 +65,7 @@
     <script src="/article/article.ctrl.js"></script>
     <script src="/earth/earth.ctrl.js"></script>
     <script src="/map/map.ctrl.js"></script>
+    <script src="/calendar/calendar.ctrl.js"></script>
 
     <!-- services -->
     <script src="/services/authService.js"></script>
@@ -662,6 +666,7 @@
 										<a href="#"><i class="fa fa-th"></i><span class="menu-title"><strong>Layouts</strong></span><i class="arrow"></i></a>
 
 										<ul class="collapse in">
+                                            <li><a href="/calendar"><i class="fa fa-calendar"></i>Calendar</a></li>
                                             <li><a href="/earth"><i class="fa fa-user"></i>Earth</a></li>
                                             <li><a href="/map"><i class="fa fa-user"></i>Travel map</a></li>
                                             <li><a href="/users-list"><i class="fa fa-user"></i>Users</a></li>

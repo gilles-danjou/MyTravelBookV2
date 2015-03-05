@@ -5,7 +5,7 @@ angular.module('myTravelBook', [
     'angular-growl',
     //'uiGmapgoogle-maps',
     'authService', 'app.routes',
-    'appCtrl', 'homeCtrl',
+    'appCtrl', 'homeCtrl', 'calendarCtrl',
     'userCtrl', 'articleCtrl', 'searchCtrl', 'earthCtrl', 'mapCtrl'
 
     //'btford.socket-io',

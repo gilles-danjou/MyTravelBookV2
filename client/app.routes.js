@@ -10,6 +10,7 @@ angular.module('app.routes', ['ngRoute'])
         .when('/users-list',            {templateUrl: '/user/users.html',        controller: 'userController',           controllerAs: 'user'})
         .when('/searches-list',         {templateUrl: '/search/searches-list.html'})
         .when('/articles-list',         {templateUrl: '/article/articles-list.html'})
+        .when('/calendar',              {templateUrl: '/calendar/calendar.html'})
 
         //.when('/users/create',          {templateUrl: 'app/views/pages/users/single.html',     controller: 'userCreateController',     controllerAs: 'user'})
         //.when('/users/:user_id',        {templateUrl: 'app/views/pages/users/single.html',     controller: 'userEditController',       controllerAs: 'user'})
